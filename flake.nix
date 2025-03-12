@@ -1,3 +1,5 @@
+# NOTE:
+# sudo nixos-generate-config --show-hardware-config > hosts/<hostname>/hardware-configuration.nix
 {
 	description = "NixOS Configuration with Flakes";
 
