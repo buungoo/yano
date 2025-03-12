@@ -26,7 +26,7 @@
 
 	users.users.bungo = {
 		isNormalUser = true;
-		home = lib.mkDefault "/home/bungo";  # Align with Home Manager
+		home = "/home/bungo";  # Align with Home Manager
 		description = "Main User";
 		extraGroups = [ "wheel" "networkmanager" ];
 	};

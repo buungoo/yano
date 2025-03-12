@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
 	imports = [ ./common.nix ];  # Inherit shared settings
@@ -21,5 +21,5 @@
 	};
 
 	# Override a shared module (e.g., git email for this user)
-	programs.git.userEmail = "bungo@example.com";
+	programs.git.userEmail = lib.mkForce "bungo@example.com";
 }
