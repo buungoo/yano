@@ -22,7 +22,7 @@
 		layout = "se";
 		variant = "nodeadkeys";
 	};
-	environment.systemPackages = with pkgs; [ nvim git ];
+	environment.systemPackages = with pkgs; [ neovim git ];
 
 	users.users.bungo = {
 		isNormalUser = true;
