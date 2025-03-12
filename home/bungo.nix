@@ -21,5 +21,5 @@
 	};
 
 	# Override a shared module (e.g., git email for this user)
-	programs.git.userEmail = "user1@example.com";
+	programs.git.userEmail = "bungo@example.com";
 }
