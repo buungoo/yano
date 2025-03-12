@@ -32,8 +32,8 @@
 	# Shared git configuration
 	programs.git = {
 		enable = true;
-		userName = "Your Name";
-		userEmail = "your.email@example.com";
+		userName = "bungo";
+		userEmail = "bergdahlalex@protonmail.com";
 		extraConfig = {
 			init.defaultBranch = "main";
 		};
