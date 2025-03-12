@@ -21,7 +21,7 @@
 					{
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
-						home-manager.users.user1 = import ./home/bungo.nix;
+						home-manager.users.bungo = import ./home/bungo.nix;
 					}
 				];
 			};
