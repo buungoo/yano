@@ -24,6 +24,13 @@
 	};
 	environment.systemPackages = with pkgs; [ nvim git ];
 
+	users.users.bungo = {
+		isNormalUser = true;
+		home = lib.mkDefault "/home/bungo";  # Align with Home Manager
+		description = "Main User";
+		extraGroups = [ "wheel" "networkmanager" ];
+	};
+
 	# Common services (SSH, etc.)
 	services.openssh.enable = true;
 }
