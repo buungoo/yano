@@ -22,7 +22,12 @@
 		layout = "se";
 		variant = "nodeadkeys";
 	};
-	environment.systemPackages = with pkgs; [ neovim git ];
+	environment.systemPackages = with pkgs; [
+		neovim
+		git
+		fzf
+		# nix-search-tv
+	];
 
 	# Install for all users
 	programs = {

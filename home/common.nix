@@ -20,15 +20,6 @@
 		};
 	};
 
-	# Common editor configuration (e.g., VSCode or Neovim)
-	# programs.vscode = {
-	# 	enable = true;
-	# 	extensions = with pkgs.vscode-extensions; [
-	# 		ms-python.python
-	# 		eamodio.gitlens
-	# 	];
-	# };
-
 	# Shared git configuration
 	programs = {
 		# Configure zsh for user (you must specify the users shell as zsh first)
