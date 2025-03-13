@@ -7,6 +7,10 @@
 
 	# Machine-specific settings (hostname, bootloader, etc.)
 	networking.hostName = "nas0";
+	networking = {
+		hostName = "nas0";
+		networkmanager.enable = true;
+	};
 	boot.loader.systemd-boot.enable = true;
 
 	# Include common configuration in hosts/common.nix
