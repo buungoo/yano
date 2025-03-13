@@ -24,6 +24,10 @@
 	};
 	environment.systemPackages = with pkgs; [ neovim git ];
 
+	programs = {
+		zsh.enable = true;
+	};
+
 	users.users.bungo = {
 		isNormalUser = true;
 		home = "/home/bungo";  # Align with Home Manager
