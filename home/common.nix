@@ -14,8 +14,8 @@
 		shellAliases = {
 			ll = "ls -l";
 			update = "nix flake update";
-			rebuild-switch = "sudo nixos-rebuild switch --flake .";
-			rebuild-boot = "sudo nixos-rebuild boot --flake .";
+			rebuild-switch = "sudo nixos-rebuild switch --flake";
+			rebuild-boot = "sudo nixos-rebuild boot --flake";
 		};
 	};
 
