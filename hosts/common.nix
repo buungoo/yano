@@ -29,6 +29,7 @@
 		home = "/home/bungo";  # Align with Home Manager
 		description = "Main User";
 		extraGroups = [ "wheel" "networkmanager" ];
+		shell = pkgs.zsh;
 	};
 
 	# Common services (SSH, etc.)
