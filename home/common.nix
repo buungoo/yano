@@ -39,5 +39,8 @@
 				init.defaultBranch = "main";
 			};
 		};
+		zsh = {
+			enable = true;
+		};
 	};
 }
