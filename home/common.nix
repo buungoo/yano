@@ -31,6 +31,13 @@
 
 	# Shared git configuration
 	programs = {
+		# Configure zsh for user (you must specify the users shell as zsh first)
+		zsh = {
+			enable = true;
+			enableCompletion = true;
+			autosuggestion.enable = true;
+			syntaxHighlighting.enable = true;
+		};
 		git = {
 			enable = true;
 			userName = "bungo";
@@ -38,9 +45,6 @@
 			extraConfig = {
 				init.defaultBranch = "main";
 			};
-		};
-		zsh = {
-			enable = true;
 		};
 	};
 }

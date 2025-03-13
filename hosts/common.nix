@@ -24,6 +24,7 @@
 	};
 	environment.systemPackages = with pkgs; [ neovim git ];
 
+	# Install for all users
 	programs = {
 		zsh.enable = true;
 	};
@@ -33,7 +34,7 @@
 		home = "/home/bungo";  # Align with Home Manager
 		description = "Main User";
 		extraGroups = [ "wheel" "networkmanager" ];
-		shell = pkgs.zsh;
+		shell = pkgs.zsh; # Set shell (defaults to bash otherwise)
 	};
 
 	# Common services (SSH, etc.)
