@@ -6,7 +6,6 @@
 	system.stateVersion = "25.05";
 
 	# Machine-specific settings (hostname, bootloader, etc.)
-	networking.hostName = "nas0";
 	networking = {
 		hostName = "nas0";
 		networkmanager.enable = true;
