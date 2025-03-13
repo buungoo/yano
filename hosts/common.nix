@@ -25,8 +25,6 @@
 	environment.systemPackages = with pkgs; [
 		neovim
 		git
-		fzf
-		# nix-search-tv
 	];
 
 	# Install for all users

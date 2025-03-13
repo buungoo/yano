@@ -20,6 +20,10 @@
 		};
 	};
 
-	# Override a shared module (e.g., git email for this user)
-	programs.git.userEmail = lib.mkForce "bungo@example.com";
+	programs = {
+		git = {
+			userEmail = lib.mkForce "bergdahlalex@protonmail.com";
+			userName = lib.mkForce "bungo";
+		};
+	};
 }

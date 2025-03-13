@@ -5,7 +5,6 @@
 	home = {
 		# Generic packages useful for all users
 		packages = with pkgs; [
-			neofetch
 			fastfetch
 			git
 			zoxide
@@ -22,7 +21,7 @@
 
 	# Shared git configuration
 	programs = {
-		# Configure zsh for user (you must specify the users shell as zsh first)
+		# Configure zsh for users (you must specify the users shell as zsh first)
 		zsh = {
 			enable = true;
 			enableCompletion = true;
@@ -35,8 +34,6 @@
 		};
 		git = {
 			enable = true;
-			userName = "bungo";
-			userEmail = "bergdahlalex@protonmail.com";
 			extraConfig = {
 				init.defaultBranch = "main";
 			};
