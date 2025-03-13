@@ -6,17 +6,17 @@
 		# Generic packages useful for all users
 		packages = with pkgs; [
 			neofetch
+			fastfetch
 			git
-			curl
-			wget
-			jq
+			zoxide
 		];
 
 		# Shell aliases shared across users
 		shellAliases = {
 			ll = "ls -l";
 			update = "nix flake update";
-			rebuild = "sudo nixos-rebuild switch --flake .";
+			rebuild-switch = "sudo nixos-rebuild switch --flake .";
+			rebuild-boot = "sudo nixos-rebuild boot --flake .";
 		};
 	};
 
@@ -37,6 +37,10 @@
 			enableCompletion = true;
 			autosuggestion.enable = true;
 			syntaxHighlighting.enable = true;
+		};
+		zoxide = {
+			enable = true;
+			options = [ "--cmd cd" ];
 		};
 		git = {
 			enable = true;
