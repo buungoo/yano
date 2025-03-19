@@ -14,8 +14,8 @@
 		shellAliases = {
 			ll = "ls -l";
 			update = "nix flake update";
-			rebuild-switch = "nixos-rebuild switch --flake --use-remote-sudo";
-			rebuild-boot = "sudo nixos-rebuild boot --flake --use-remote-sudo";
+			rebuild-switch = "nixos-rebuild switch --use-remote-sudo --flake";
+			rebuild-boot = "nixos-rebuild boot --use-remote-sudo --flake";
 		};
 	};
 
