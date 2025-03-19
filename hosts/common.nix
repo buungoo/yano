@@ -48,6 +48,11 @@
 	services.immich.settings = {
 		host = "0.0.0.0";  # Allows external connections
 	};
+	services.immich = {
+		enable = true;
+		port = 2283;
+		host = "0.0.0.0";
+	};
 	networking.firewall.allowedTCPPorts = [ 2283 ];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
