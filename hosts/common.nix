@@ -49,6 +49,9 @@
 		host = "0.0.0.0";
 		mediaLocation = "/storage/immich";
 	};
+	# Ensures directory is created with 755 permissions
+	systemd.tmpfiles.rules = [ "d /storage/immich 0755 immich immich -" ];
+
 	networking.firewall.allowedTCPPorts = [ 2283 ];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
