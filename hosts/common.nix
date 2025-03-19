@@ -43,5 +43,8 @@
 	# Common services (SSH, etc.)
 	services.openssh.enable = true;
 
+	services.immich.enable = true;
+	services.immich.port = 2283;
+
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
