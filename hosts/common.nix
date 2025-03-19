@@ -47,7 +47,7 @@
 		enable = true;
 		port = 2283;
 		host = "0.0.0.0";
-		mediaLocation = "/home/bungo/immich/";
+		mediaLocation = "/storage/immich";
 	};
 	networking.firewall.allowedTCPPorts = [ 2283 ];
 
