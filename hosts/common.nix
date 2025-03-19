@@ -45,6 +45,7 @@
 
 	services.immich.enable = true;
 	services.immich.port = 2283;
+	networking.firewall.allowedTCPPorts = [ 2283 ];
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
