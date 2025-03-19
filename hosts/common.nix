@@ -43,12 +43,12 @@
 	# Common services (SSH, etc.)
 	services.openssh.enable = true;
 
-	services.immich = {
-		enable = true;
-		port = 2283;
-		host = "0.0.0.0";
-		mediaLocation = "/storage/immich";
-	};
+	# services.immich = {
+	# 	enable = true;
+	# 	port = 2283;
+	# 	host = "0.0.0.0";
+	# 	mediaLocation = "/storage/immich";
+	# };
 
 	networking.firewall.allowedTCPPorts = [ 2283 ];
 
