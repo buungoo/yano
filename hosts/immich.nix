@@ -21,7 +21,7 @@
 
   # Allow traffic between bridge and host
   networking.firewall = {
-    trustedInterfaces = [ "br-containres" ];
+    trustedInterfaces = [ "br-containers" ];
     allowedTCPPorts = [ 80 ];
     extraCommands = ''
       iptables -A FORWARD -i br-containers -j ACCEPT
