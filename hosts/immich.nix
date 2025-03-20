@@ -16,7 +16,7 @@
 	networking.nat = {
 		enable = true;
 		internalInterfaces = [ br-containers ];
-		internalInterfaces = "enp1s0";
+		externalInterfaces = "enp1s0";
 	};
 
   containers.immich = {
