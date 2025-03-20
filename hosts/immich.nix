@@ -3,10 +3,10 @@
 {
   # Host bridge configuration
   networking.bridges = {
-    br0.interfaces = [ "eth0" ]; # Replace 'eth0' with your physical interface
+    br0.interfaces = [ "enp1s0" ]; # Replace 'eth0' with your physical interface
   };
   networking.interfaces = {
-    eth0.useDHCP = false; # Disable DHCP on physical interface
+    enp1s0.useDHCP = false; # Disable DHCP on physical interface
     br0.useDHCP = true; # Enable DHCP on bridge (or set static IP)
   };
 
@@ -14,7 +14,6 @@
     autoStart = true;
 
     privateNetwork = false; # Disable private network
-    interfaces = [ "eth0" ]; # Container's network interface
 
     bindMounts = {
       "/var/lib/immich" = {
