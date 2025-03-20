@@ -2,7 +2,7 @@
 
 let
 	# Make sure the bound hostPath is also created
-	immichMedia = config.containers.immich2.bindMounts.hostPath;
+	immichMedia = config.containers.immich2.bindMounts."/var/lib/immich".hostPath;
 in
 {
 	# --- Immich Container Configuration ---
