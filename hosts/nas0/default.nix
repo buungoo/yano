@@ -12,6 +12,8 @@
 	};
 	boot.loader.systemd-boot.enable = true;
 
+	boot.kernelModules = [ "r8169" ];
+
 	# Include common configuration in hosts/common.nix
 	# (e.g., timezone, locale, shared packages)
 }
