@@ -8,6 +8,7 @@
 		hostAddress = "192.168.1.192";
 		localAddress = "192.168.1.8";
 		config = {
+			networking.firewall.allowedTCPPorts = [ 2283 ];
 			# services.postgresql = {
 			# 	enable = true;
 			# 	settings = {
@@ -35,7 +36,4 @@
 			# ];
 		};
 	};
-
-	# (Optional) Host firewall rule to allow the container's exposed port.
-	# networking.firewall.allowedTCPPorts = [ 2283 ];
 }
