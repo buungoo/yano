@@ -14,12 +14,12 @@
 
 	# --- Immich Container Configuration ---
 	containers.immich = { config, pkgs, ... }: {
-		privateNetwork = true;
-		hostBridge = "br0";  # Attach container to the host bridge
-
 		# Omit localAddress so the container gets its IP from DHCP.
 		config = {
 			networking.useDHCP = true;
+
+			virtualisation.container.privateNetwork = true;
+			virtualisation.container.hostBridge = "br0";
 
 			# Immich service configuration inside the container.
 			services.immich = {
