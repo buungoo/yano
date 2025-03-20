@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 
+let
+	# Make sure the bound hostPath is also created
+	immichMedia = containers.immich2.bindMounts.hostPath;
+in
 {
 	# --- Immich Container Configuration ---
 	containers.immich2 = {
@@ -33,6 +37,30 @@
 			# 		options = "bind";
 			# 	}
 			# ];
+		};
+	};
+
+	# Oneshot service using the same mediaLocation
+	systemd.services.immich-init = let
+		script = pkgs.writeShellScript "immich-init" ''
+		set -euo pipefail
+		for dir in encoded-video thumbs upload library profile backups; do
+		marker="${immichMedia}/$dir/.immich"
+		if [[ ! -f "$marker" ]]; then
+		touch "$marker"
+		chown immich:immich "$marker"
+		fi
+		done
+		'';
+	in {
+		description = "Immich Initialization (One-Time Setup)";
+		wantedBy = [ "immich-server.service" ];
+		before = [ "immich-server.service" ];
+		serviceConfig = {
+			Type = "oneshot";
+			RemainAfterExit = true;
+			ExecStart = "${script}";
+			User = "root";
 		};
 	};
 }
