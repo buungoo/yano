@@ -20,12 +20,14 @@
   };
 
   # Allow traffic between bridge and host
-  networking.firewall.extraCommands = ''
-    iptables -A FORWARD -i br-containers -j ACCEPT
-    iptables -A FORWARD -o br-containers -j ACCEPT
-  '';
-
-	networking.firewall.allowedTCPPorts = [ 80 ];
+  networking.firewall = {
+    trustedInterfaces = [ "br-containres" ];
+    allowedTCPPorts = [ 80 ];
+    extraCommands = ''
+      iptables -A FORWARD -i br-containers -j ACCEPT
+      iptables -A FORWARD -o br-containers -j ACCEPT
+    '';
+  };
 
   containers.immich = {
     autoStart = true;
@@ -38,6 +40,7 @@
       {
         hostPort = 80;
         containerPort = 2283;
+        protocol = "tcp";
       }
     ];
 
