@@ -19,6 +19,12 @@
     externalInterface = "enp1s0";
   };
 
+  # Allow traffic between bridge and host
+  networking.firewall.extraCommands = ''
+    iptables -A FORWARD -i br-containers -j ACCEPT
+    iptables -A FORWARD -o br-containers -j ACCEPT
+  '';
+
   containers.immich = {
     autoStart = true;
 
