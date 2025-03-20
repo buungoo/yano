@@ -13,6 +13,12 @@
     }];
   };
 
+	networking.nat = {
+		enable = true;
+		internalInterfaces = [ br-containers ];
+		internalInterfaces = "enp1s0";
+	};
+
   containers.immich = {
     autoStart = true;
 
