@@ -41,14 +41,14 @@ in
 	};
 
 	systemd.tmpfiles.rules = [
-		"d ${builtins.dirOf immichMedia} 0755 root root -"
-		"d ${immichMedia} 0755 immich immich -"
-		"d ${immichMedia}/encoded-video 0755 immich immich -"
-		"d ${immichMedia}/thumbs 0755 immich immich -"
-		"d ${immichMedia}/upload 0755 immich immich -"
-		"d ${immichMedia}/library 0755 immich immich -"
-		"d ${immichMedia}/profile 0755 immich immich -"
-		"d ${immichMedia}/backups 0755 immich immich -"
+		"d ${builtins.dirOf immich2Media} 0755 root root -"
+		"d ${immich2Media} 0755 immich immich -"
+		"d ${immich2Media}/encoded-video 0755 immich immich -"
+		"d ${immich2Media}/thumbs 0755 immich immich -"
+		"d ${immich2Media}/upload 0755 immich immich -"
+		"d ${immich2Media}/library 0755 immich immich -"
+		"d ${immich2Media}/profile 0755 immich immich -"
+		"d ${immich2Media}/backups 0755 immich immich -"
 	];
 
 	# Oneshot service to create markers - runs on HOST before container starts
