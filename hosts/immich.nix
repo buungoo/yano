@@ -13,11 +13,11 @@
     }];
   };
 
-	networking.nat = {
-		enable = true;
-		internalInterfaces = [ "vb-immich" ];
-		externalInterface = "enp1s0";
-	};
+  networking.nat = {
+    enable = true;
+    internalInterfaces = [ "vb-immich" ];
+    externalInterface = "enp1s0";
+  };
 
   containers.immich = {
     autoStart = true;
@@ -25,6 +25,13 @@
     privateNetwork = true; # Disable private network
     hostBridge = "br-containers"; # Attach to the container bridge
     localAddress = "10.0.0.2/24"; # Container IP
+
+    forwardPorts = [
+      {
+        hostPort = 80;
+        containerPort = 2283;
+      }
+    ];
 
     bindMounts = {
       "/var/lib/immich" = {
