@@ -2,19 +2,16 @@
 
 {
 	networking = {
-		# Create a bridge "br0" and add your wireless interface to it.
+		# Create a bridge "br0" using your wireless interface.
 		bridges.br0.interfaces = [ "wlp2s0" ];
 
-		# Do not use DHCP for the host overall; instead, let the bridge handle DHCP.
+		# Let the bridge obtain its IP via DHCP.
 		useDHCP = false;
-
-		# Configure br0 to obtain its IP address via DHCP.
 		interfaces."br0".useDHCP = true;
 	};
 
 	# --- Immich Container Configuration ---
 	containers.immich = { config, pkgs, ... }: {
-		# Omit localAddress so the container gets its IP from DHCP.
 		config = {
 			networking.useDHCP = true;
 
@@ -29,12 +26,15 @@
 				mediaLocation = "/var/lib/immich";  # Container's media directory
 			};
 
-			# Bind-mount the host's /storage/immich3 directory into the container.
-			fileSystems."/var/lib/immich" = {
-				device = "/storage/immich3";  # Host directory
-				fsType = "none";
-				options = "bind";
-			};
+			# Instead of fileSystems, use boot.extraMounts in container config.
+			boot.extraMounts = [
+				{
+					device = "/storage/immich3";  # Host directory
+					target = "/var/lib/immich";     # Mount point in the container
+					fsType = "none";
+					options = "bind";
+				}
+			];
 		};
 	};
 
