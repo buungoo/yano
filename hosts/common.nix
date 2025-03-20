@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+	imports = [ ./immich.nix ];
+
 	# Shared across all machines
 	time.timeZone = "Europe/Stockholm";
 	i18n = {
@@ -42,26 +44,6 @@
 
 	# Common services (SSH, etc.)
 	services.openssh.enable = true;
-
-	services.immich = {
-		enable = true;
-		port = 2283;
-		host = "0.0.0.0";
-		mediaLocation = "/storage/immich";
-	};
-
-	# REQUIRED for non-default mediaLocation
-	systemd.tmpfiles.rules = [
-	# Create parent directory and subdirs Immich expects
-		"d /storage 0755 root root -"  # Parent dir (adjust if needed)
-		"d /storage/immich 0755 immich immich -"
-		"d /storage/immich/encoded-video 0755 immich immich -"
-		"d /storage/immich/thumbs 0755 immich immich -"
-		"d /storage/immich/upload 0755 immich immich -"
-		"d /storage/immich/library 0755 immich immich -"
-		"d /storage/immich/profile 0755 immich immich -"
-		"d /storage/immich/backups 0755 immich immich -"
-	];
 
 	networking.firewall.allowedTCPPorts = [ 2283 ];
 
