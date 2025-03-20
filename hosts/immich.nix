@@ -25,6 +25,8 @@
     iptables -A FORWARD -o br-containers -j ACCEPT
   '';
 
+	networking.firewall.allowedTCPPorts = [ 80 ];
+
   containers.immich = {
     autoStart = true;
 
