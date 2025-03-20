@@ -7,21 +7,20 @@
 		privateNetwork = true;
 		hostAddress = "192.168.1.192";
 		localAddress = "192.168.1.8";
+		bindMounts = {
+			"/var/lib/immich" = {
+				hostPath = "/storage/immich3";  # Host directory to mount
+				isReadOnly = false;
+			};
+		};
 		config = {
 			networking.firewall.allowedTCPPorts = [ 2283 ];
-			# services.postgresql = {
-			# 	enable = true;
-			# 	settings = {
-			# 		port = 5433;  # Change the PostgreSQL port inside the container
-			# 		# listen_addresses = "127.0.0.1";  # Restrict to localhost inside the container
-			# 	};
-			# };
 
 			# Immich service configuration inside the container.
 			services.immich = {
 				enable = true;
 				database.enable = true;
-				database.port = 5433;
+				# database.port = 5433;
 				host = "0.0.0.0";
 				mediaLocation = "/var/lib/immich";  # Container's media directory
 			};
