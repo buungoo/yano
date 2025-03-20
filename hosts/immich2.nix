@@ -3,12 +3,13 @@
 {
 	# --- Immich Container Configuration ---
 	containers.immich2 = {
+		autoStart = true;
 		config = {
 			# Immich service configuration inside the container.
 			services.immich = {
 				enable = true;
 				port = 2284;
-				host = "0.0.0.0";
+				# host = "0.0.0.0";
 				mediaLocation = "/var/lib/immich";  # Container's media directory
 			};
 			# # Instead of fileSystems, use boot.extraMounts in container config.
