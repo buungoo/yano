@@ -2,7 +2,7 @@
 
 {
 	# --- Immich Container Configuration ---
-	containers.immich2 = { config, pkgs, ... }: {
+	containers.immich2 = {
 		config = {
 			# Immich service configuration inside the container.
 			services.immich = {
