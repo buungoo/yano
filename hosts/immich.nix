@@ -29,6 +29,15 @@
     '';
   };
 
+
+  networking.nat.forwardPorts = [
+    {
+      sourcePort = 80;
+      destination = "10.0.0.2:2283";
+      proto = "tcp";
+    }
+  ];
+
   containers.immich = {
     autoStart = true;
 
@@ -36,13 +45,13 @@
     hostBridge = "br-containers"; # Attach to the container bridge
     localAddress = "10.0.0.2/24"; # Container IP
 
-    forwardPorts = [
-      {
-        hostPort = 80;
-        containerPort = 2283;
-        protocol = "tcp";
-      }
-    ];
+    # forwardPorts = [
+    #   {
+    #     hostPort = 80;
+    #     containerPort = 2283;
+    #     protocol = "tcp";
+    #   }
+    # ];
 
     bindMounts = {
       "/var/lib/immich" = {
