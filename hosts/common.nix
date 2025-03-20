@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-	imports = [ ./immich.nix ];
+	imports = [ ./immich.nix ./immich2.nix ];
 
 	# Shared across all machines
 	time.timeZone = "Europe/Stockholm";
