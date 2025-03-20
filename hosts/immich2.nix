@@ -10,6 +10,7 @@
 				enable = true;
 				port = 2284;
 				database.enable = true;
+				database.port = 5433;
 				# host = "0.0.0.0";
 				mediaLocation = "/var/lib/immich";  # Container's media directory
 			};
