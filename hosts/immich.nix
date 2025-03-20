@@ -1,19 +1,24 @@
 { config, pkgs, ... }:
 
 {
-  # Host bridge configuration
-  networking.bridges = {
-    br0.interfaces = [ "enp1s0" ]; # Replace 'eth0' with your physical interface
-  };
   networking.interfaces = {
     enp1s0.useDHCP = true; # Disable DHCP on physical interface
-    br0.useDHCP = true; # Enable DHCP on bridge (or set static IP)
+  };
+
+  networking.bridges.br-containers.interfaces = [ ]; # No physical interface
+  networking.interfaces.br-containers = {
+    ipv4.addresses = [{
+      address = "10.0.0.1";
+      prefixLength = 24;
+    }];
   };
 
   containers.immich = {
     autoStart = true;
 
-    privateNetwork = false; # Disable private network
+    privateNetwork = true; # Disable private network
+    hostBridge = "br-containers"; # Attach to the container bridge
+    localAddress = "10.0.0.2/24"; # Container IP
 
     bindMounts = {
       "/var/lib/immich" = {
