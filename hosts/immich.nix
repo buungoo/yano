@@ -6,7 +6,7 @@
     br0.interfaces = [ "enp1s0" ]; # Replace 'eth0' with your physical interface
   };
   networking.interfaces = {
-    enp1s0.useDHCP = false; # Disable DHCP on physical interface
+    enp1s0.useDHCP = true; # Disable DHCP on physical interface
     br0.useDHCP = true; # Enable DHCP on bridge (or set static IP)
   };
 
