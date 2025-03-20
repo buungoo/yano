@@ -15,28 +15,26 @@
 
   networking.nat = {
     enable = true;
-    internalInterfaces = [ "br-containers" ];
+    internalInterfaces = [ "ve-+" ];
     externalInterface = "enp1s0";
   };
 
   # Allow traffic between bridge and host
   networking.firewall = {
-    trustedInterfaces = [ "br-containers" ];
+    trustedInterfaces = [ "ve-+" ];
     allowedTCPPorts = [ 80 ];
-    extraCommands = ''
-      iptables -A FORWARD -i br-containers -j ACCEPT
-      iptables -A FORWARD -o br-containers -j ACCEPT
-    '';
   };
 
 
-  networking.nat.forwardPorts = [
-    {
-      sourcePort = 80;
-      destination = "10.0.0.2:2283";
-      proto = "tcp";
-    }
-  ];
+  # networking.nat.forwardPorts = [
+  #   {
+  #     sourcePort = 80;
+  #     destination = "10.0.0.2:2283";
+  #     proto = "tcp";
+  #   }
+  # ];
+
+  networking.networkmanager.unmanaged = [ "interface-name:ve-*" ];
 
   containers.immich = {
     autoStart = true;
@@ -45,13 +43,13 @@
     hostBridge = "br-containers"; # Attach to the container bridge
     localAddress = "10.0.0.2/24"; # Container IP
 
-    # forwardPorts = [
-    #   {
-    #     hostPort = 80;
-    #     containerPort = 2283;
-    #     protocol = "tcp";
-    #   }
-    # ];
+    forwardPorts = [
+      {
+        hostPort = 80;
+        containerPort = 2283;
+        # protocol = "tcp";
+      }
+    ];
 
     bindMounts = {
       "/var/lib/immich" = {
