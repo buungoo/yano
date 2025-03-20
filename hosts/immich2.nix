@@ -5,6 +5,14 @@
 	containers.immich2 = {
 		autoStart = true;
 		config = {
+			services.postgresql = {
+				enable = true;
+				settings = {
+					port = 5433;  # Change the PostgreSQL port inside the container
+					listen_addresses = "127.0.0.1";  # Restrict to localhost inside the container
+				};
+			};
+
 			# Immich service configuration inside the container.
 			services.immich = {
 				enable = true;
