@@ -15,13 +15,13 @@
 
   networking.nat = {
     enable = true;
-    internalInterfaces = [ "ve-+" ];
+    internalInterfaces = [ "vb-+" ];
     externalInterface = "enp1s0";
   };
 
   # Allow traffic between bridge and host
   networking.firewall = {
-    trustedInterfaces = [ "ve-+" ];
+    trustedInterfaces = [ "vb-+" ];
     allowedTCPPorts = [ 80 ];
   };
 
@@ -34,7 +34,7 @@
   #   }
   # ];
 
-  networking.networkmanager.unmanaged = [ "interface-name:ve-*" ];
+  networking.networkmanager.unmanaged = [ "interface-name:vb-*" ];
 
   containers.immich = {
     autoStart = true;
