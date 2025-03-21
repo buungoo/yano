@@ -18,24 +18,15 @@
   # Enable NAT on the host.
   networking.nat = {
     enable = true;
-    # Include your existing virtual interfaces and our new bridge
-    internalInterfaces = [ "ve-+" "vb-+" "containerBridge" ];
+	 # Explicitly specify NAT interfaces
+    internalInterfaces = [ "vb-immich" ];
     externalInterface = "enp1s0";
   };
-
-  # Adjust firewall to trust both the dynamic virtual interfaces and the container bridge.
-  networking.firewall = {
-    trustedInterfaces = [ "vb-+" "containerBridge" ];
-    allowedTCPPorts = [ 80 ];
-  };
-
-  # Prevent NetworkManager from interfering with our virtual interfaces.
-  networking.networkmanager.unmanaged = [ "interface-name:vb-*" "interface-name:containerBridge" ];
 
   containers.immich = {
     autoStart = true;
 
-    privateNetwork = true; # Disable private network
+    privateNetwork = true;
     hostBridge = "containerBridge"; # Attach to the container bridge
     localAddress = "10.0.0.2/24"; # Container IP
 
@@ -43,7 +34,6 @@
       {
         hostPort = 80;
         containerPort = 2283;
-        # protocol = "tcp";
       }
     ];
 
