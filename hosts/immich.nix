@@ -2,7 +2,7 @@
 
 {
   # Physical interface – DHCP is enabled on enp1s0.
-  # networking.interfaces.enp1s0.useDHCP = true;
+   networking.interfaces.enp1s0.useDHCP = true;
 
   # Create a dedicated bridge for containers with a static IP (acting as the gateway)
   networking.bridges.containerBridge = {
