@@ -17,7 +17,7 @@
       inherit (self) outputs;
       mkNixOSConfig = path:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs vars; };
+          specialArgs = { inherit inputs outputs; };
           modules = [ path ];
         };
     in
