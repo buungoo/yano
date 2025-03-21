@@ -19,9 +19,9 @@
 
   home-manager =
     {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.bungo = import ../home/bungo.nix;
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      users.bungo = import ../home/bungo.nix;
     };
 
   # Include common configuration in hosts/common.nix
