@@ -27,7 +27,7 @@
         dev = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./hosts/nas0/default.nix
+            ./hosts/dev
             ./hosts/common.nix
             home-manager.nixosModules.home-manager
             {
