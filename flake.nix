@@ -23,20 +23,21 @@
     in
     {
       nixosConfigurations = {
+        dev = mkNixOSConfig ./hosts/dev;
         # Build with: sudo nixos-rebuild switch --flake .#nas0
-        dev = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/dev
-            ./hosts/common.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.bungo = import ./home/bungo.nix;
-            }
-          ];
-        };
+        # dev = nixpkgs.lib.nixosSystem {
+        #   system = "x86_64-linux";
+        #   modules = [
+        #     ./hosts/dev
+        #     ./hosts/common.nix
+        #     home-manager.nixosModules.home-manager
+        #     {
+        #       home-manager.useGlobalPkgs = true;
+        #       home-manager.useUserPackages = true;
+        #       home-manager.users.bungo = import ./home/bungo.nix;
+        #     }
+        #   ];
+        # };
         # machine2 = nixpkgs.lib.nixosSystem {
         # 	system = "x86_64-linux";
         # 	modules = [
