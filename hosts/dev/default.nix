@@ -21,7 +21,7 @@
     {
       useGlobalPkgs = true;
       useUserPackages = true;
-      users.bungo = import ../home/bungo.nix;
+      users.bungo = import ../../home/bungo.nix;
     };
 
   # Include common configuration in hosts/common.nix
