@@ -1,46 +1,42 @@
 { config, pkgs, ... }:
 
 {
-  networking.interfaces = {
-    enp1s0.useDHCP = true; # Disable DHCP on physical interface
-  };
+  # Physical interface – DHCP is enabled on enp1s0.
+  # networking.interfaces.enp1s0.useDHCP = true;
 
-  networking.bridges.br-containers.interfaces = [ ]; # No physical interface
-  networking.interfaces.br-containers = {
+  # Create a dedicated bridge for containers with a static IP (acting as the gateway)
+  networking.bridges.containerBridge = {
+    interfaces = [ ]; # no physical interface attached
+  };
+  networking.interfaces.containerBridge = {
     ipv4.addresses = [{
       address = "10.0.0.1";
       prefixLength = 24;
     }];
   };
 
+  # Enable NAT on the host.
   networking.nat = {
     enable = true;
-    internalInterfaces = [ "vb-+" ];
+    # Include your existing virtual interfaces and our new bridge
+    internalInterfaces = [ "ve-+" "vb-+" "containerBridge" ];
     externalInterface = "enp1s0";
   };
 
-  # Allow traffic between bridge and host
+  # Adjust firewall to trust both the dynamic virtual interfaces and the container bridge.
   networking.firewall = {
-    trustedInterfaces = [ "vb-+" ];
+    trustedInterfaces = [ "vb-+" "containerBridge" ];
     allowedTCPPorts = [ 80 ];
   };
 
-
-  # networking.nat.forwardPorts = [
-  #   {
-  #     sourcePort = 80;
-  #     destination = "10.0.0.2:2283";
-  #     proto = "tcp";
-  #   }
-  # ];
-
-  networking.networkmanager.unmanaged = [ "interface-name:vb-*" ];
+  # Prevent NetworkManager from interfering with our virtual interfaces.
+  networking.networkmanager.unmanaged = [ "interface-name:vb-*" "interface-name:containerBridge" ];
 
   containers.immich = {
     autoStart = true;
 
     privateNetwork = true; # Disable private network
-    hostBridge = "vb-+"; # Attach to the container bridge
+    hostBridge = "containerBridge"; # Attach to the container bridge
     localAddress = "10.0.0.2/24"; # Container IP
 
     forwardPorts = [
@@ -60,8 +56,9 @@
 
     config = let immichMedia = "/var/lib/immich"; in
       {
-        networking.interfaces.eth0.useDHCP = true; # Or set static IP here
+        # networking.interfaces.eth0.useDHCP = true; # Or set static IP here
         networking.firewall.allowedTCPPorts = [ 2283 ];
+        networking.defaultGateway = "10.0.0.1";
 
         services.immich = {
           enable = true;
