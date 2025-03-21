@@ -40,7 +40,7 @@
     autoStart = true;
 
     privateNetwork = true; # Disable private network
-    hostBridge = "br-containers"; # Attach to the container bridge
+    hostBridge = "vb-+"; # Attach to the container bridge
     localAddress = "10.0.0.2/24"; # Container IP
 
     forwardPorts = [
