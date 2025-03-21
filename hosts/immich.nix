@@ -56,7 +56,7 @@
 
     config = let immichMedia = "/var/lib/immich"; in
       {
-        # networking.interfaces.eth0.useDHCP = true; # Or set static IP here
+        networking.interfaces.eth0.useDHCP = true; # Or set static IP here
         networking.firewall.allowedTCPPorts = [ 2283 ];
         networking.defaultGateway = "10.0.0.1";
 
