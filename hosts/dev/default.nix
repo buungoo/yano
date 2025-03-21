@@ -5,6 +5,7 @@
     inputs.home-manager.nixosModules.home-manager
 
     ./hardware-configuration.nix
+    ../common.nix
   ]; # Hardware-specific config
 
   system.stateVersion = "25.05";
