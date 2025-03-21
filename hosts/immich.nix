@@ -2,11 +2,11 @@
 
 {
   # Physical interface – DHCP is enabled on enp1s0.
-   networking.interfaces.enp1s0.useDHCP = true;
+  networking.interfaces.enp1s0.useDHCP = true; # This is REQUIRED
 
-  # Create a dedicated bridge for containers with a static IP (acting as the gateway)
+  # Create a dedicated bridge for containers with a static IP
   networking.bridges.containerBridge = {
-    interfaces = [ ]; # no physical interface attached
+    interfaces = [ ]; # No physical interface attached
   };
   networking.interfaces.containerBridge = {
     ipv4.addresses = [{
@@ -63,7 +63,7 @@
         services.immich = {
           enable = true;
           database.enable = true;
-          host = "0.0.0.0";
+          host = "10.0.0.2";
           mediaLocation = "/var/lib/immich";
         };
 
