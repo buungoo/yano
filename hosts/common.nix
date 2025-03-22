@@ -36,10 +36,10 @@
     zsh.enable = true;
   };
 
-  users.users.bungo = {
+  users.users.${vars.userName} = {
     isNormalUser = true;
-    home = "/home/bungo"; # Align with Home Manager
-    description = "Main User";
+    home = "/home/${vars.userName}"; # Align with Home Manager
+    description = vars.userName;
     extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.zsh; # Set shell (defaults to bash otherwise)
   };

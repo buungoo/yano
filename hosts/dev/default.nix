@@ -2,9 +2,9 @@
 
 {
   imports = [
-
-    ./hardware-configuration.nix
     ../common.nix
+    ./hardware-configuration.nix
+
     ../immich.nix
   ]; # Hardware-specific config
 
