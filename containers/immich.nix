@@ -39,7 +39,7 @@
 
     bindMounts = {
       "/var/lib/immich" = {
-        hostPath = "/storage/immich"; # Host directory to mount
+        hostPath = "/mnt/storage/immich"; # Host directory to mount
         isReadOnly = false;
       };
     };
