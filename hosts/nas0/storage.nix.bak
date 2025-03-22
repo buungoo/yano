@@ -1,0 +1,58 @@
+{ config, lib, pkgs, modulesPath, ... }:
+
+let
+  dataDisks = [ "data0" ];
+  parityDisks = [ "parity0" ];
+in
+{
+  fileSystems = lib.mkMerge [
+    (lib.genAttrs (dataDisks ++ parityDisks) (disk: {
+      device = "/dev/disk/by-label/${lib.toUpper disk}";
+      fsType = "ext4";
+    }))
+
+    {
+      "/mnt/storage" = {
+        device = lib.concatMapStrings (d: "/mnt/disks/${d}/*,") dataDisks;
+        fsType = "mergerfs";
+        depends = map (d: "/mnt/disks/${d}") dataDisks;
+        options = [
+          "defaults"
+          "allow_other"
+          "fsname=mergerfs"
+          "cache.files=partial"
+          "category.create=mfs"
+          "dropcacheonclose=false"
+          "moveonenospc=true"
+          "minfreespace=20G"
+        ];
+      };
+    }
+  ];
+
+  # SnapRAID
+  # Log files are found through
+  # sudo journalctl -u snapraid-sync.service
+  # sudo journalctl -u snapraid-scrub.service
+  services.snapraid = {
+    enable = true;
+    parityFiles = map (disk: "/mnt/disks/${disk}/snapraid.parity") parityDisks;
+    contentFiles =
+      (map (disk: "/mnt/disks/${disk}/.snapraid.content") dataDisks) ++
+      (map (disk: "/mnt/disks/${disk}/.snapraid.content") parityDisks);
+    dataDisks = lib.genAttrs dataDisks (disk: "/mnt/disks/${disk}/");
+
+    exclude = [
+      "*.unrecoverable"
+      "tmp/"
+      "lost+found/"
+      "*.!sync"
+      ".AppleDouble"
+      "._.DS_Store"
+      "media/downloads/"
+    ];
+
+    sync.interval = "03:00";
+    scrub.interval = "weekly";
+  };
+}

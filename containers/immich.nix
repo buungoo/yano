@@ -2,7 +2,7 @@
 
 {
   # Physical interface – DHCP is enabled on enp1s0.
-  networking.interfaces.enp1s0.useDHCP = true; # This is REQUIRED
+  networking.interfaces.enp3s0.useDHCP = true; # This is REQUIRED
 
   # Create a dedicated bridge for containers with a static IP
   networking.bridges.containerBridge = {
@@ -20,7 +20,7 @@
     enable = true;
 	 # Explicitly specify NAT interfaces
     internalInterfaces = [ "vb-immich" ];
-    externalInterface = "enp1s0";
+    externalInterface = "enp3s0";
   };
 
   containers.immich = {
