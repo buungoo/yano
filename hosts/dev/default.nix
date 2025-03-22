@@ -8,7 +8,7 @@
     ../common.nix
   ]; # Hardware-specific config
 
-  system.stateVersion = "25.05";
+  system.stateVersion = vars.stateVersion;
 
   # Machine-specific settings (hostname, bootloader, etc.)
   networking = {
@@ -20,9 +20,10 @@
 
   home-manager =
     {
+      extraSpecialArgs = { inherit inputs outputs vars; };
       useGlobalPkgs = true;
       useUserPackages = true;
-      users.bungo = import ../../home/bungo.nix;
+      users.${vars.userName} = import ../../home/bungo.nix;
     };
 
   # Include common configuration in hosts/common.nix

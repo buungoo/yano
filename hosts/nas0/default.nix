@@ -1,4 +1,4 @@
-{ inputs, outputs, ... }:
+{ inputs, outputs, vars, ... }:
 
 {
   imports = [
@@ -8,7 +8,7 @@
     ../common.nix
   ];
 
-  system.stateVersion = "24.11";
+  system.stateVersion = vars.stateVersion;
 
   networking = {
     hostName = "nas0";
