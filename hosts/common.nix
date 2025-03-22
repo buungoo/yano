@@ -5,7 +5,11 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
-  # Shared across all machines
+  system.stateVersion = vars.stateVersion;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  boot.loader.systemd-boot.enable = true;
+
   time.timeZone = "Europe/Stockholm";
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -26,6 +30,13 @@
     layout = "se";
     variant = "nodeadkeys";
   };
+
+  networking = {
+    hostName = vars.hostName;
+    networkmanager.enable = true;
+    firewall.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     neovim
     git
@@ -52,11 +63,6 @@
       users.${vars.userName} = import ../home/bungo.nix;
     };
 
-
   # Common services (SSH, etc.)
   services.openssh.enable = true;
-
-  networking.firewall.enable = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
