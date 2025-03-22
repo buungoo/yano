@@ -97,6 +97,6 @@
   };
 
   systemd.tmpfiles.rules = [
-    "d /storage/immich 0755 root root -"
+    "d /mnt/storage/immich 0755 root root -"
   ];
 }
