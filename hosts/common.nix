@@ -45,7 +45,7 @@
 	# Common services (SSH, etc.)
 	services.openssh.enable = true;
 
-	networking.firewall.allowedTCPPorts = [ 2283 ];
+	networking.firewall.enable = true;
 
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
