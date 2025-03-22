@@ -1,4 +1,4 @@
-{ inputs, outputs, ... }:
+{ inputs, outputs, vars, ... }:
 
 {
   imports = [
@@ -16,7 +16,7 @@
     networkmanager.enable = true;
   };
   boot.loader.systemd-boot.enable = true;
-  boot.kernelModules = [ "r8169" ];
+  boot.kernelModules = [ "r8169" ]; # Ethernet module
 
   home-manager =
     {

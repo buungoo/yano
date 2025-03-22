@@ -1,17 +1,25 @@
-{ config, pkgs, ... }:
+{ inputs, outputs, ... }:
 
 {
-	imports = [ ./hardware-configuration.nix ]; # Hardware-specific config
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
 
-	system.stateVersion = "24.11";
+    ./hardware-configuration.nix
+    ../common.nix
+  ];
 
-	# Machine-specific settings (hostname, bootloader, etc.)
-	networking = {
-		hostName = "nas0";
-		networkmanager.enable = true;
-	};
-	boot.loader.systemd-boot.enable = true;
+  system.stateVersion = "24.11";
 
-	# Include common configuration in hosts/common.nix
-	# (e.g., timezone, locale, shared packages)
+  networking = {
+    hostName = "nas0";
+    networkmanager.enable = true;
+  };
+  boot.loader.systemd-boot.enable = true;
+
+  home-manager =
+    {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      users.bungo = import ../../home/bungo.nix;
+    };
 }

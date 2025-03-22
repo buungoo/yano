@@ -12,7 +12,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       inherit (self) outputs;
       mkNixOSConfig = path:
@@ -24,6 +24,7 @@
     {
       nixosConfigurations = {
         dev = mkNixOSConfig ./hosts/dev;
+        nas0 = mkNixOSConfig ./hosts/nas0;
         # Build with: sudo nixos-rebuild switch --flake .#nas0
         # dev = nixpkgs.lib.nixosSystem {
         #   system = "x86_64-linux";
