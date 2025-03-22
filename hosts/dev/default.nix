@@ -2,10 +2,10 @@
 
 {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
 
     ./hardware-configuration.nix
     ../common.nix
+    ../immich.nix
   ]; # Hardware-specific config
 
   system.stateVersion = vars.stateVersion;
@@ -17,14 +17,6 @@
   };
   boot.loader.systemd-boot.enable = true;
   boot.kernelModules = [ "r8169" ]; # Ethernet module
-
-  home-manager =
-    {
-      extraSpecialArgs = { inherit inputs outputs vars; };
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      users.${vars.userName} = import ../../home/bungo.nix;
-    };
 
   # Include common configuration in hosts/common.nix
   # (e.g., timezone, locale, shared packages)
