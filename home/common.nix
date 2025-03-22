@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, vars, osconfig, ... }:
 
 {
   # Shared home-manager configuration for all users
