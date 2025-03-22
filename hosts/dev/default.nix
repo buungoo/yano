@@ -12,7 +12,7 @@
 
   # Machine-specific settings (hostname, bootloader, etc.)
   networking = {
-    hostName = "dev";
+    hostName = vars.hostName;
     networkmanager.enable = true;
   };
   boot.loader.systemd-boot.enable = true;

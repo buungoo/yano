@@ -15,9 +15,12 @@
   outputs = { self, nixpkgs, ... }@inputs:
     let
       inherit (self) outputs;
+
+      vars = import ./vars.nix;
+
       mkNixOSConfig = path:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs outputs vars; };
           modules = [ path ];
         };
     in
