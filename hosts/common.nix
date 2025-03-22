@@ -51,7 +51,7 @@
     isNormalUser = true;
     home = "/home/${vars.userName}"; # Align with Home Manager
     description = vars.userName;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
     shell = pkgs.zsh; # Set shell (defaults to bash otherwise)
   };
 

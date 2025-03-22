@@ -7,12 +7,18 @@
     ./storage.nix
 
     ../../containers/immich.nix
+
+    ../../services/jobs.nix
+    ../../services/proxy.nix
   ];
 
   environment.systemPackages = with pkgs; [
     lazydocker
     mergerfs
+    tailscale
   ];
+
+  services.tailscale.enable = true;
 
   services = {
     openssh = {

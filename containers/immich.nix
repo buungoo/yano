@@ -32,7 +32,7 @@
 
     forwardPorts = [
       {
-        hostPort = 80;
+        hostPort = 2283;
         containerPort = 2283;
       }
     ];
