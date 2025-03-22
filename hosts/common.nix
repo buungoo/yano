@@ -49,7 +49,7 @@
       extraSpecialArgs = { inherit inputs outputs vars; };
       useGlobalPkgs = true;
       useUserPackages = true;
-      users.${vars.userName} = import ../../home/bungo.nix;
+      users.${vars.userName} = import ../home/bungo.nix;
     };
 
 
