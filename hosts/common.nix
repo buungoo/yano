@@ -60,9 +60,8 @@
       extraSpecialArgs = { inherit inputs outputs vars; };
       useGlobalPkgs = true;
       useUserPackages = true;
-      users.${vars.userName} = import ../home/bungo.nix;
+      users.${vars.userName} = import ../home/${vars.userName}.nix;
     };
 
-  # Common services (SSH, etc.)
   services.openssh.enable = true;
 }
